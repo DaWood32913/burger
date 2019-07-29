@@ -14,8 +14,6 @@ app.use(express.json());
 var PORT = process.env.PORT || 8080;
 
 //Handlebars
-var exphbs = require("express-handlebars");
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
