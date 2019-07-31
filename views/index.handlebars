@@ -1,0 +1,65 @@
+<h1>Burgers to Devour!</h1>
+
+<div id="left">
+  <ul>
+    {{#each burgers}}
+        {{#unless devoured}}
+            {{> burgers/burger-block devour=false}}
+        {{/unless}}
+    {{/each}}
+  </ul>
+</div>
+
+<div id="right">
+  <ul>
+    {{#each burgers}}
+        {{#if devoured}}
+            {{> burgers/burger-devoured devour=true}}
+        {{/if}}
+    {{/each}}
+  </ul>
+</div>
+
+<h2>Add a new burger to eat!</h2>
+<form id="newBurger" class="button-size">
+  <textarea type="text" name="burger"></textarea>
+  <button type="submit">Save My Burger!</button>
+</form>
+
+{{!-- <script type="text/javascript">
+  $(".devour").on("click", function(event) {
+    // Get the ID from the button.
+    var id = $(this).data("burgerid");
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: id
+    }).then(
+      function() {
+        // move 'devoured' burger to right column -------------
+        // make devoured = true for this.burger
+        this.devoured = true;
+        console.log("devoured: ", id);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+  $("#newBurger").on("submit", function(event) {
+    event.preventDefault();
+    var newBurger= {
+      burger: $("#newBurger [name=burger]").val().trim()
+    };
+    // Send the POST request.
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("A new burger to eat!");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+  </script> --}}
